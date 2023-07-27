@@ -22,6 +22,7 @@ class AuthController extends Controller
             'password' => 'required|string',
         ]);
         $credentials = $request->only('email', 'password');
+
         $token = Auth::attempt($credentials);
         
         if (!$token) {
@@ -33,6 +34,7 @@ class AuthController extends Controller
         $user = Auth::user();
         return response()->json([
             'user' => $user,
+            'code' => '200',
             'authorization' => [
                 'token' => $token,
                 'type' => 'bearer',
