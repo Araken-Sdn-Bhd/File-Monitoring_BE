@@ -34,12 +34,6 @@ class UserController extends Controller
 
     public function getUserList(Request $request)
     {
-        // $validator = Validator::make($request->all(), [
-        //     'email' => 'required|string'
-        // ]);
-        // if ($validator->fails()) {
-        //     return response()->json(["message" => $validator->errors(), "code" => 422]);
-        // }
         $list = User::select('user_id', 'email', 'user_access', 'status')
         ->get();
         return response()->json(["message" => " List", 'list' => $list, "code" => 200]);
