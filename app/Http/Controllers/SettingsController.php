@@ -37,7 +37,6 @@ class SettingsController extends Controller
             return response()->json(["message" => "Record Successfully Saved", "code" => 200]);
         }
     }
-
     public function settingList()
     {
         $settingList = Settings::select('*')
@@ -47,7 +46,6 @@ class SettingsController extends Controller
         ->get();
         return response()->json(["message" => "Setting List", 'list' => $settingList, "code" => 200]);
     }
-
     public function typeList()
     {
         $typeList = Settings::select('type')
@@ -65,5 +63,19 @@ class SettingsController extends Controller
         ->orderBy('parameter','asc')
         ->get();
         return response()->json(["message" => "Setting List", 'list' => $settingList, "code" => 200]);
+    }
+    public function deleteSetting(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'id' => 'required|integer',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(["message" => $validator->errors(), "code" => 422]);
+        }
+        $settingList = Settings::where(
+            ['setting_id' => $request->id]
+        );
+        $settingList->delete();
+        return response()->json(["message" => "Deleted Successfully.", "code" => 200]);
     }
 }

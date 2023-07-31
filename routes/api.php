@@ -28,10 +28,9 @@ Route::controller(SettingsController::class)->group(function () {
     Route::get('settingList', 'settingList');
     Route::get('typeList', 'typeList');
     Route::get('{type}/typeSearchList', 'typeSearchList');
+    Route::post('deleteSetting', 'deleteSetting');
 
 });
-
-
 
 Route::group(['prefix' => 'user'], function () {
     Route::post('/insertOrupdate', [UserController::class, 'store']);
