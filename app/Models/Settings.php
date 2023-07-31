@@ -9,5 +9,6 @@ class Settings extends Model
 {
     use HasFactory;
     protected $table = 'settings';
+    protected $primaryKey = 'setting_id';
     protected $fillable = ['type','parameter','value','code','index','description'];
 }
