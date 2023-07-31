@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 class SettingsController extends Controller
 {
-    public function store(Request $request)
+    public function settingStore(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'type' => 'required|string',
@@ -27,16 +27,43 @@ class SettingsController extends Controller
             'description' => $request->description,
         ];
 
-        $res = Settings::create($dataSetting);
+        if($request->editId ==''){
+          $res = Settings::create($dataSetting);
+        }else{
+            $res = Settings::where('setting_id',$request->editId)->update($dataSetting);
+        }
 
         if ($res) {
             return response()->json(["message" => "Record Successfully Saved", "code" => 200]);
         }
     }
 
-    public function getSettingList()
+    public function settingList()
     {
-        $settingList = Settings::select('*')->get();
+        $settingList = Settings::select('*')
+        ->orderBy('type','asc')
+        ->orderBy('index','asc')
+        ->orderBy('parameter','asc')
+        ->get();
+        return response()->json(["message" => "Setting List", 'list' => $settingList, "code" => 200]);
+    }
+
+    public function typeList()
+    {
+        $typeList = Settings::select('type')
+        ->groupBy('type')
+        ->orderBy('index','asc')
+        ->orderBy('parameter','asc')
+        ->get();
+        return response()->json(["message" => "Type List", 'list' => $typeList, "code" => 200]);
+    }
+    public function typeSearchList($type)
+    {
+        $settingList = Settings::select('*')
+        ->where('type',$type)
+        ->orderBy('index','asc')
+        ->orderBy('parameter','asc')
+        ->get();
         return response()->json(["message" => "Setting List", 'list' => $settingList, "code" => 200]);
     }
 }

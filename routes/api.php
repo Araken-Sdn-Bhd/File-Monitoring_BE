@@ -23,11 +23,15 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('refresh', 'refresh');
 });
 
+Route::controller(SettingsController::class)->group(function () {
+    Route::post('settingStore', 'settingStore');
+    Route::get('settingList', 'settingList');
+    Route::get('typeList', 'typeList');
+    Route::get('{type}/typeSearchList', 'typeSearchList');
 
-Route::group(['prefix' => 'settings'], function () {
-    Route::post('/insertOrupdate', [SettingsController::class, 'store']);
-    Route::get('/list', [SettingsController::class, 'getSettingList']);
 });
+
+
 
 Route::group(['prefix' => 'user'], function () {
     Route::post('/insertOrupdate', [UserController::class, 'store']);
