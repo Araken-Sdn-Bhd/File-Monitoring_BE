@@ -6,7 +6,7 @@ use App\Models\Clients;
 use Validator;
 use Illuminate\Support\Facades\DB;
 
-class clientsController extends Controller
+class ClientsController extends Controller
 {
     public function clientStore(Request $request)
     {

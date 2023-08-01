@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\clientsController;
+use App\Http\Controllers\ClientsController;
+use App\Http\Controllers\TendersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,13 @@ Route::controller(ClientsController::class)->group(function () {
     Route::post('clientStore', 'clientStore');
     Route::get('clientList', 'clientList');
     Route::get('{status}/statusSearchList', 'statusSearchList');
+
+});
+
+Route::controller(TendersController::class)->group(function () {
+    Route::post('tenderStore', 'tenderStore');
+    Route::get('tenderList', 'tenderList');
+    
 
 });
 
