@@ -8,8 +8,7 @@ use Validator;
 use Illuminate\Support\Facades\DB;
 
 class TendersController extends Controller
-{
-    
+{  
     public function tenderList()
     {
         $tenderList = Tenders::select('*')
