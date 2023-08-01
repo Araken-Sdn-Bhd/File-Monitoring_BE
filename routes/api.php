@@ -23,7 +23,6 @@ Route::controller(AuthController::class)->group(function() {
     Route::post('logout', 'logout');
     Route::post('refresh', 'refresh');
 });
-
 Route::controller(SettingsController::class)->group(function() {
     Route::post('settingStore', 'settingStore');
     Route::get('settingList', 'settingList');
@@ -31,21 +30,16 @@ Route::controller(SettingsController::class)->group(function() {
     Route::get('{type}/typeSearchList', 'typeSearchList');
     Route::post('deleteSetting', 'deleteSetting');
 });
-
 Route::controller(ClientsController::class)->group(function() {
     Route::post('clientStore', 'clientStore');
     Route::get('clientList', 'clientList');
     Route::get('{status}/statusSearchList', 'statusSearchList');
 });
-
 Route::controller(TendersController::class)->group(function() {
-
     Route::post('tenderStore', 'tenderStore');
     Route::get('tenderList', 'tenderList');
 });
-
 Route::group(['prefix' => 'user'], function() {
-    
     Route::post('/insertOrupdate', [UserController::class, 'store']);
     Route::get('/getUserList', [UserController::class, 'getUserList']);
 }); 
