@@ -39,11 +39,13 @@ Route::controller(ClientsController::class)->group(function() {
 });
 
 Route::controller(TendersController::class)->group(function() {
+
     Route::post('tenderStore', 'tenderStore');
     Route::get('tenderList', 'tenderList');
 });
 
 Route::group(['prefix' => 'user'], function() {
+    
     Route::post('/insertOrupdate', [UserController::class, 'store']);
     Route::get('/getUserList', [UserController::class, 'getUserList']);
 }); 
