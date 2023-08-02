@@ -13,7 +13,8 @@ class UserController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'email'=> 'required|string',
-            //'user_access' => 'required|string',
+            'user_access' => 'required|string',
+            'status' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -26,7 +27,7 @@ class UserController extends Controller
             'status'=>$request->status,
         ];
 
-        $res = User::create($dataUser);
+        $res = User::updateOrCreate(['email'=>$request->email],$dataUser);
 
         if ($res){return response()->json(["message" => "Record Successfully Saved", "code" => 200]);}
         
