@@ -12,7 +12,7 @@ class ClientsController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'client_name' => 'required|string',
-            'client_status' => 'required|string',
+            'client_status' => 'required|int',
         ]);
         if ($validator->fails()) {
             return response()->json(["message" => $validator->errors(), "code" => 422]);
