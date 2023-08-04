@@ -5,6 +5,7 @@ use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\clientsController;
+use App\Http\Controllers\FilesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,7 @@ Route::controller(SettingsController::class)->group(function () {
     Route::get('typeList', 'typeList');
     Route::get('{type}/typeSearchList', 'typeSearchList');
     Route::post('deleteSetting', 'deleteSetting');
+    Route::get('getList', 'getList');
 
 });
 
@@ -43,3 +45,7 @@ Route::group(['prefix' => 'user'], function () {
     Route::post('/insertOrupdate', [UserController::class, 'store']);
     Route::get('/getUserList', [UserController::class, 'getUserList']);
 }); 
+
+Route::controller(FilesController::class)->group(function () {
+    Route::post('fileList', 'fileList');
+});
