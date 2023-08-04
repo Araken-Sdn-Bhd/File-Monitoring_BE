@@ -30,7 +30,6 @@ Route::controller(SettingsController::class)->group(function () {
     Route::get('typeList', 'typeList');
     Route::get('{type}/typeSearchList', 'typeSearchList');
     Route::post('deleteSetting', 'deleteSetting');
-    Route::get('getList', 'getList');
 
 });
 
