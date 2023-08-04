@@ -46,6 +46,14 @@ class SettingsController extends Controller
         ->get();
         return response()->json(["message" => "Setting List", 'list' => $settingList, "code" => 200]);
     }
+    public function getList(Request $request) //to be continued later (03/08/23 12.48PM)...
+    {
+        $list = Settings::select('*')
+        ->where('type', $request->type)
+        ->orderBy('index','asc')
+        ->get();
+        return response()->json(["message" => "Setting Type List", 'list' => $list, "code" => 200]);
+    }
     public function typeList()
     {
         $typeList = Settings::select('type')
