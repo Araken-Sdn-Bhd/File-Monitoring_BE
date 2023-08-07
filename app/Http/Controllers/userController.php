@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Settings;
 use Validator;
 use Illuminate\Support\Facades\DB;
 
@@ -35,8 +36,11 @@ class UserController extends Controller
 
     public function getUserList(Request $request)
     {
-        $list = User::select('user_id', 'email', 'user_access', 'status')
-        ->get();
+        $list = DB::table('users')
+                ->join('settings', 'users.status', '=', 'settings.setting_id')
+                ->select('users.*', 'settings.value as value')
+                ->orderBy('users.user_id','asc')
+                ->get();
         return response()->json(["message" => " List", 'list' => $list, "code" => 200]);
     }
 }
