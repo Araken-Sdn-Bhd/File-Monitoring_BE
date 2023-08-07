@@ -17,14 +17,13 @@ use App\Http\Controllers\FilesController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-Route::controller(AuthController::class)->group(function () {
+Route::controller(AuthController::class)->group(function() {
     Route::post('login', 'login');
     Route::post('reset', 'reset');
     Route::post('logout', 'logout');
     Route::post('refresh', 'refresh');
 });
-
-Route::controller(SettingsController::class)->group(function () {
+Route::controller(SettingsController::class)->group(function() {
     Route::post('settingStore', 'settingStore');
     Route::get('settingList', 'settingList');
     Route::get('typeList', 'typeList');
@@ -32,15 +31,16 @@ Route::controller(SettingsController::class)->group(function () {
     Route::post('deleteSetting', 'deleteSetting');
 
 });
-
-Route::controller(ClientsController::class)->group(function () {
+Route::controller(clientsController::class)->group(function() {
     Route::post('clientStore', 'clientStore');
     Route::get('clientList', 'clientList');
     Route::get('{status}/statusSearchList', 'statusSearchList');
-
 });
-
-Route::group(['prefix' => 'user'], function () {
+Route::controller(TendersController::class)->group(function() {
+    Route::post('tenderStore', 'tenderStore');
+    Route::get('tenderList', 'tenderList');
+});
+Route::group(['prefix' => 'user'], function() {
     Route::post('/insertOrupdate', [UserController::class, 'store']);
     Route::get('/getUserList', [UserController::class, 'getUserList']);
 }); 

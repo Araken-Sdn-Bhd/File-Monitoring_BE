@@ -6,13 +6,13 @@ use App\Models\Clients;
 use Validator;
 use Illuminate\Support\Facades\DB;
 
-class clientsController extends Controller
+class ClientsController extends Controller
 {
     public function clientStore(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'client_name' => 'required|string',
-            'client_status' => 'required|string',
+            'client_status' => 'required|int',
         ]);
         if ($validator->fails()) {
             return response()->json(["message" => $validator->errors(), "code" => 422]);
