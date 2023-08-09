@@ -28,3 +28,5 @@ jobs:
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           MERGE_LABELS: ":rocket: Ready to Merge"
+          MERGE_RETRIES: "6"
+          MERGE_RETRY_SLEEP: "60000"
