@@ -50,7 +50,8 @@ class FilesController extends Controller
             return response()->json(["message" => $validator->errors(), "code" => 422]);
         }
 
-        unlink('public' .$request->file_path);
+        $unlink_path = trim($request->file_path, "/"); //trim the first slash to act as absolute path
+        unlink($unlink_path);
         $fileList = Files::where(
             ['backup_id' => $request->backup_id]
         );
