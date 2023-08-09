@@ -6,6 +6,7 @@ use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\clientsController;
 use App\Http\Controllers\FilesController;
+use App\Http\Controllers\TendersController;
 
 /*
 |--------------------------------------------------------------------------
