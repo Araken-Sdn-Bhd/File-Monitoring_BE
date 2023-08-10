@@ -47,5 +47,7 @@ Route::group(['prefix' => 'user'], function() {
 }); 
 
 Route::controller(FilesController::class)->group(function () {
-    Route::post('fileList', 'fileList');
+    Route::get('{user_id}/fileList', 'fileList');
+    Route::post('fileStore', 'fileStore');
+    Route::post('deleteFile', 'deleteFile');
 });
