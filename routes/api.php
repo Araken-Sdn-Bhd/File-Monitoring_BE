@@ -41,10 +41,11 @@ Route::controller(TendersController::class)->group(function() {
     Route::post('tenderStore', 'tenderStore');
     Route::get('tenderList', 'tenderList');
 });
-Route::group(['prefix' => 'user'], function() {
-    Route::post('/insertOrupdate', [UserController::class, 'store']);
-    Route::get('/getUserList', [UserController::class, 'getUserList']);
-}); 
+
+Route::controller(UserController::class)->group(function(){
+    Route::post('insertOrupdate', 'store');
+    Route::get('getUserList', 'getUserList');
+});
 
 Route::controller(FilesController::class)->group(function () {
     Route::get('{user_id}/fileList', 'fileList');
