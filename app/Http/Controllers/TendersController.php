@@ -54,6 +54,7 @@ class TendersController extends Controller
         $dataTender = [
             'title' => $request->title,
             'client_id' => $request->client_id,
+            'reference_no' =>$request->reference_no,
             'submission_date'=>$request->submission_date,
             'submission_price'=> $request->submission_price,
             'tender_requirement'=>$file_name_tender,
